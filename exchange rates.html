@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Courier; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Currency Converter&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Basic styling inspired by XE.com */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #f5f5f5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 10px rgba(0,0,0,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #1a73e8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.converter {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>input, select {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ddd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 200px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #1a73e8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #1557b0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#result {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Ad placeholder styling (for Google Ads) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.ad-banner {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #eee;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Google AdSense placeholder --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="ad-banner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- AdSense Leaderboard --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>crossorigin="anonymous"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;ins class="adsbygoogle"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>style="display:block"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data-ad-slot="1234567890"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data-ad-format="auto"&gt;&lt;/ins&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>(adsbygoogle = window.adsbygoogle || []).push({});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Currency Converter&lt;/h1&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="converter"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" id="amount" placeholder="Amount" value="1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="fromCurrency"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="USD"&gt;USD&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="EUR"&gt;EUR&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="GBP"&gt;GBP&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="JPY"&gt;JPY&lt;/option&gt;</p>
+<p class="p3"><span class="s1">{</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"result":"success",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"documentation":"https://www.exchangerate-api.com/docs",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"terms_of_use":"https://www.exchangerate-api.com/terms",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_last_update_unix":1738195201,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_last_update_utc":"Thu, 30 Jan 2025 00:00:01 +0000",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_next_update_unix":1738281601,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_next_update_utc":"Fri, 31 Jan 2025 00:00:01 +0000",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"base_code":"USD",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"conversion_rates":{</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"USD":1,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AED":3.6725,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AFN":78.1166,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ALL":95.2117,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AMD":400.0641,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ANG":1.7900,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AOA":921.6312,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ARS":1051.5800,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AUD":1.6050,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AWG":1.7900,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AZN":1.7010,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BAM":1.8786,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BBD":2.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BDT":121.7599,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BGN":1.8789,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BHD":0.3760,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BIF":2944.7394,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BMD":1.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BND":1.3504,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BOB":6.9348,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BRL":5.8599,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BSD":1.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BTN":86.6189,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BWP":13.9243,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BYN":3.2900,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BZD":2.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CAD":1.4419,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CDF":2853.1119,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CHF":0.9066,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CLP":994.8265,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CNY":7.2585,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"COP":4220.1299,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CRC":507.3255,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CUP":24.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CVE":105.9100,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CZK":24.1285,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DJF":177.7210,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DKK":7.1698,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DOP":61.6468,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DZD":135.1409,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"EGP":50.2286,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ERN":15.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ETB":126.9596,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"EUR":0.9605,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"FJD":2.3149,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"FKP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"FOK":7.1700,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GBP":0.8040,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GEL":2.8798,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GGP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GHS":15.2745,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GIP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GMD":72.5190,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GNF":8627.6287,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GTQ":7.7401,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GYD":209.3639,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HKD":7.7915,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HNL":25.4881,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HRK":7.2369,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HTG":130.7318,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HUF":391.8913,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IDR":16225.5312,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ILS":3.6069,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IMP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"INR":86.6191,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IQD":1311.4924,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IRR":42035.2322,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ISK":140.0921,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JEP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JMD":157.4622,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JOD":0.7090,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JPY":155.2166,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KES":129.2833,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KGS":87.4570,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KHR":4016.5723,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KID":1.6052,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KMF":472.5372,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KRW":1443.6363,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KWD":0.3085,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KYD":0.8333,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KZT":517.3748,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LAK":21876.4296,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LBP":89500.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LKR":296.5512,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LRD":198.7474,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LSL":18.6009,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LYD":4.9100,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MAD":9.9972,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MDL":18.5899,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MGA":4627.8244,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MKD":59.0922,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MMK":2100.0657,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MNT":3442.9774,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MOP":8.0250,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MRU":39.9837,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MUR":46.3335,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MVR":15.4663,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MWK":1739.6106,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MXN":20.5282,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MYR":4.3880,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MZN":63.9539,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NAD":18.6009,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NGN":1520.0792,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NIO":36.8198,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NOK":11.3059,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NPR":138.5902,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NZD":1.7677,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"OMR":0.3845,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PAB":1.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PEN":3.7379,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PGK":4.0562,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PHP":58.4381,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PKR":278.5850,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PLN":4.0391,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PYG":7910.2274,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"QAR":3.6400,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RON":4.7816,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RSD":112.5319,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RUB":98.9315,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RWF":1394.8593,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SAR":3.7500,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SBD":8.5190,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SCR":14.2738,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SDG":544.7550,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SEK":11.0053,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SGD":1.3508,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SHP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SLE":22.7241,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SLL":22724.0517,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SOS":571.9877,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SRD":35.1791,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SSP":4060.4830,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"STN":23.5324,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SYP":12976.5590,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SZL":18.6009,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"THB":33.7410,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TJS":10.9590,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TMT":3.5000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TND":3.1890,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TOP":2.3941,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TRY":35.8265,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TTD":6.7719,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TVD":1.6052,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TWD":32.8409,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TZS":2525.1713,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UAH":41.9428,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UGX":3687.4659,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UYU":43.4501,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UZS":12980.1664,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"VES":57.3929,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"VND":25097.9460,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"VUV":119.2516,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"WST":2.8298,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XAF":630.0496,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XCD":2.7000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XDR":0.7665,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XOF":630.0496,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XPF":114.6189,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"YER":249.0298,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ZAR":18.5967,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ZMW":27.9607,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ZWL":26.3461</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>}</span></p>
+<p class="p3"><span class="s1">}</span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span&gt;to&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="toCurrency"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="EUR"&gt;EUR&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="USD"&gt;USD&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="GBP"&gt;GBP&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="JPY"&gt;JPY&lt;/option&gt;</p>
+<p class="p3"><span class="s1">{</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"result":"success",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"documentation":"https://www.exchangerate-api.com/docs",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"terms_of_use":"https://www.exchangerate-api.com/terms",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_last_update_unix":1738195201,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_last_update_utc":"Thu, 30 Jan 2025 00:00:01 +0000",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_next_update_unix":1738281601,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"time_next_update_utc":"Fri, 31 Jan 2025 00:00:01 +0000",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"base_code":"USD",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>"conversion_rates":{</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"USD":1,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AED":3.6725,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AFN":78.1166,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ALL":95.2117,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AMD":400.0641,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ANG":1.7900,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AOA":921.6312,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ARS":1051.5800,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AUD":1.6050,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AWG":1.7900,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"AZN":1.7010,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BAM":1.8786,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BBD":2.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BDT":121.7599,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BGN":1.8789,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BHD":0.3760,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BIF":2944.7394,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BMD":1.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BND":1.3504,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BOB":6.9348,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BRL":5.8599,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BSD":1.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BTN":86.6189,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BWP":13.9243,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BYN":3.2900,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"BZD":2.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CAD":1.4419,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CDF":2853.1119,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CHF":0.9066,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CLP":994.8265,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CNY":7.2585,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"COP":4220.1299,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CRC":507.3255,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CUP":24.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CVE":105.9100,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"CZK":24.1285,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DJF":177.7210,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DKK":7.1698,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DOP":61.6468,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"DZD":135.1409,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"EGP":50.2286,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ERN":15.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ETB":126.9596,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"EUR":0.9605,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"FJD":2.3149,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"FKP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"FOK":7.1700,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GBP":0.8040,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GEL":2.8798,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GGP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GHS":15.2745,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GIP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GMD":72.5190,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GNF":8627.6287,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GTQ":7.7401,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"GYD":209.3639,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HKD":7.7915,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HNL":25.4881,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HRK":7.2369,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HTG":130.7318,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"HUF":391.8913,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IDR":16225.5312,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ILS":3.6069,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IMP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"INR":86.6191,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IQD":1311.4924,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"IRR":42035.2322,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ISK":140.0921,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JEP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JMD":157.4622,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JOD":0.7090,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"JPY":155.2166,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KES":129.2833,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KGS":87.4570,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KHR":4016.5723,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KID":1.6052,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KMF":472.5372,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KRW":1443.6363,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KWD":0.3085,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KYD":0.8333,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"KZT":517.3748,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LAK":21876.4296,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LBP":89500.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LKR":296.5512,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LRD":198.7474,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LSL":18.6009,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"LYD":4.9100,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MAD":9.9972,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MDL":18.5899,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MGA":4627.8244,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MKD":59.0922,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MMK":2100.0657,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MNT":3442.9774,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MOP":8.0250,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MRU":39.9837,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MUR":46.3335,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MVR":15.4663,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MWK":1739.6106,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MXN":20.5282,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MYR":4.3880,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"MZN":63.9539,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NAD":18.6009,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NGN":1520.0792,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NIO":36.8198,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NOK":11.3059,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NPR":138.5902,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"NZD":1.7677,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"OMR":0.3845,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PAB":1.0000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PEN":3.7379,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PGK":4.0562,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PHP":58.4381,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PKR":278.5850,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PLN":4.0391,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"PYG":7910.2274,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"QAR":3.6400,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RON":4.7816,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RSD":112.5319,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RUB":98.9315,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"RWF":1394.8593,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SAR":3.7500,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SBD":8.5190,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SCR":14.2738,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SDG":544.7550,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SEK":11.0053,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SGD":1.3508,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SHP":0.8039,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SLE":22.7241,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SLL":22724.0517,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SOS":571.9877,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SRD":35.1791,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SSP":4060.4830,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"STN":23.5324,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SYP":12976.5590,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"SZL":18.6009,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"THB":33.7410,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TJS":10.9590,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TMT":3.5000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TND":3.1890,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TOP":2.3941,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TRY":35.8265,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TTD":6.7719,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TVD":1.6052,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TWD":32.8409,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"TZS":2525.1713,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UAH":41.9428,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UGX":3687.4659,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UYU":43.4501,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"UZS":12980.1664,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"VES":57.3929,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"VND":25097.9460,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"VUV":119.2516,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"WST":2.8298,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XAF":630.0496,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XCD":2.7000,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XDR":0.7665,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XOF":630.0496,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"XPF":114.6189,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"YER":249.0298,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ZAR":18.5967,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ZMW":27.9607,</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>"ZWL":26.3461</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space"> </span>}</span></p>
+<p class="p3"><span class="s1">}</span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="convert()"&gt;Convert&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="result"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Fetch exchange rates from a free API (replace with a paid API for real-time data)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>async function convert() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const amount = document.getElementById('amount').value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const from = document.getElementById('fromCurrency').value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const to = document.getElementById('toCurrency').value;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const data = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const rate = data.rates[to];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const result = (amount * rate).toFixed(2);</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('result').innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>${amount} ${from} = &lt;strong&gt;${result} ${to}&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('result').innerHTML = "Error fetching rates.";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+<p class="p1">&lt;div class="currency-table"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Live Exchange Rates&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;Currency&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;th&gt;Rate&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Populate with JavaScript --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/table&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+</body>
+</html>
